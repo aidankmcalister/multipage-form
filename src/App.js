@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import NavigateButtons from "./NavigateButtons";
+import bgGraphicsMobile from "./assets/imgs/bg-sidebar-mobile.svg";
+import MainCard from "./components/MainCard";
+
+// import { useFormik } from "formik"; // Import useFormik from Formik
 
 function App() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex justify-center flex-col h-screen">
+      <img
+        className="w-full absolute -z-10 top-0 scale-110"
+        src={bgGraphicsMobile}
+        alt="background graphics"
+      />
+      <NavigateButtons
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+      <div className="flex items-center flex-1">
+        <MainCard currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      </div>
+      <div className="bottom-0 w-screen bg-white p-2 flex justify-end">
+        <button
+          type="button"
+          className="p-4 flex justify-center bg-blue-800 text-white rounded-lg">
+          Next Step
+        </button>
+      </div>
     </div>
   );
 }
